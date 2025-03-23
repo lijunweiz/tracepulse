@@ -1,0 +1,20 @@
+tracepulse:
+  dingtalk:
+    enabled: true
+    default-robot: apm
+    robot:
+      apm:
+        webhook: https://oapi.dingtalk.com/robot/send?access_token=xxxx
+        key-words: 告警
+      elk:
+        webhook: https://oapi.dingtalk.com/robot/send?access_token=xxxx
+        key-words: 告警
+  monitor:
+    thread:
+      enabled: true
+      initial-delay: 10
+      delay: 5
+      name: ${spring.application.name}
+logging:
+  level:
+    root: info
