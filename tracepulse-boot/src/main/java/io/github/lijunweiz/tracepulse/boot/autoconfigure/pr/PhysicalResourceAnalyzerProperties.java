@@ -1,4 +1,4 @@
-package io.github.lijunweiz.tracepulse.boot.autoconfigure.thread;
+package io.github.lijunweiz.tracepulse.boot.autoconfigure.pr;
 
 import io.github.lijunweiz.tracepulse.thread.SamplingProperties;
 import lombok.Data;
@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * 线程分析器配置
+ * 内存、cpu配置
  * @author lijunwei
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@ConfigurationProperties(prefix = "tracepulse.monitor.thread")
-public class ThreadAnalyzerProperties extends SamplingProperties {
+@ConfigurationProperties(prefix = "tracepulse.monitor.pr")
+public class PhysicalResourceAnalyzerProperties extends SamplingProperties {
 
     @Value("${spring.application.name:default}")
     private String name;

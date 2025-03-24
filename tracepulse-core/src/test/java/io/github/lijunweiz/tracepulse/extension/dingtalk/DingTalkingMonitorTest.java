@@ -19,7 +19,7 @@ class DingTalkingMonitorTest {
     void ding() {
         ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(2, 2, 2, TimeUnit.MINUTES,
                 new LinkedBlockingQueue<Runnable>(),
-                new NamedThreadFactory("dingTest"));
+                new NamedThreadFactory("dingTest", true));
         poolExecutor.execute(() -> System.out.println("1"));
         DingTalkingRobotProperties properties = new DingTalkingRobotProperties();
         properties.setWebhook("https://oapi.dingtalk.com/robot/send?access_token=xxxx");
