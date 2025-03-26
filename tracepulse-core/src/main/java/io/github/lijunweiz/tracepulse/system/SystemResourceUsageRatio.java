@@ -1,13 +1,13 @@
-package io.github.lijunweiz.tracepulse.pr;
+package io.github.lijunweiz.tracepulse.system;
 
 import lombok.Data;
 
 /**
- * 物理资源使用占比
+ * 系统资源使用占比
  * @author lijunwei
  */
 @Data
-public class PhysicalResourceUsageRatio {
+public class SystemResourceUsageRatio {
 
     /**
      * 整个系统内存使用率[0.0, 1.0]，无法获取时返回-1

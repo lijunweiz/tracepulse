@@ -1,4 +1,4 @@
-package io.github.lijunweiz.tracepulse.boot.autoconfigure.pr;
+package io.github.lijunweiz.tracepulse.boot.autoconfigure.system;
 
 import io.github.lijunweiz.tracepulse.thread.SamplingProperties;
 import lombok.Data;
@@ -12,8 +12,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@ConfigurationProperties(prefix = "tracepulse.monitor.pr")
-public class PhysicalResourceAnalyzerProperties extends SamplingProperties {
+@ConfigurationProperties(prefix = "tracepulse.monitor.system")
+public class SystemResourceAnalyzerProperties extends SamplingProperties {
 
     @Value("${spring.application.name:default}")
     private String name;

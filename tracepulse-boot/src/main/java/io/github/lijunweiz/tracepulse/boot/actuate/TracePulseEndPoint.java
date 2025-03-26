@@ -1,7 +1,7 @@
 package io.github.lijunweiz.tracepulse.boot.actuate;
 
-import io.github.lijunweiz.tracepulse.pr.PhysicalResourceAnalyzer;
-import io.github.lijunweiz.tracepulse.pr.PhysicalResourceUsageRatio;
+import io.github.lijunweiz.tracepulse.system.SystemResourceAnalyzer;
+import io.github.lijunweiz.tracepulse.system.SystemResourceUsageRatio;
 import io.github.lijunweiz.tracepulse.thread.ThreadAnalyzer;
 import io.github.lijunweiz.tracepulse.thread.ThreadPoolInfo;
 import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
@@ -18,12 +18,12 @@ import java.util.Map;
 public class TracePulseEndPoint {
 
     private final ThreadAnalyzer threadAnalyzer;
-    private final PhysicalResourceAnalyzer physicalResourceAnalyzer;
+    private final SystemResourceAnalyzer systemResourceAnalyzer;
 
     public TracePulseEndPoint(ThreadAnalyzer threadAnalyzer,
-                              PhysicalResourceAnalyzer physicalResourceAnalyzer) {
+                              SystemResourceAnalyzer systemResourceAnalyzer) {
         this.threadAnalyzer = threadAnalyzer;
-        this.physicalResourceAnalyzer = physicalResourceAnalyzer;
+        this.systemResourceAnalyzer = systemResourceAnalyzer;
     }
 
     @ReadOperation
@@ -39,9 +39,9 @@ public class TracePulseEndPoint {
     private Map<String, Object> getAnalyzerData() {
         Map<String, Object> map = new HashMap<>();
         Map<String, ThreadPoolInfo> threadPoolInfoCache = threadAnalyzer.getThreadPoolInfoCache();
-        PhysicalResourceUsageRatio usageRatioCache = physicalResourceAnalyzer.getPhysicalResourceUsageRatioCache();
+        SystemResourceUsageRatio usageRatioCache = systemResourceAnalyzer.getSystemResourceUsageRatioCache();
         map.put("thread", threadPoolInfoCache);
-        map.put("pr", usageRatioCache);
+        map.put("system", usageRatioCache);
 
         return map;
     }

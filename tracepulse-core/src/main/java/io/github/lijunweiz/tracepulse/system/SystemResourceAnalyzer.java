@@ -1,4 +1,4 @@
-package io.github.lijunweiz.tracepulse.pr;
+package io.github.lijunweiz.tracepulse.system;
 
 import io.github.lijunweiz.tracepulse.thread.NamedThreadFactory;
 import io.github.lijunweiz.tracepulse.thread.SamplingProperties;
@@ -16,31 +16,31 @@ import java.util.concurrent.TimeUnit;
  * 系统资源监控，内存、cpu
  * @author lijunwei
  */
-public class PhysicalResourceAnalyzer {
+public class SystemResourceAnalyzer {
 
-    private PhysicalResourceUsageRatio physicalResourceUsageRatioCache = null;
+    private SystemResourceUsageRatio systemResourceUsageRatioCache = null;
 
-    public PhysicalResourceAnalyzer(SamplingProperties properties) {
+    public SystemResourceAnalyzer(SamplingProperties properties) {
         if (Objects.isNull(properties)) {
             properties = new SamplingProperties();
         }
         ScheduledExecutorService threadAnalyzer = Executors.newScheduledThreadPool(1,
                 new NamedThreadFactory("MemoryMonitor", true));
         threadAnalyzer.scheduleWithFixedDelay(
-                () -> this.physicalResourceUsageRatioCache = this.physicalResourceUsageRatio(),
+                () -> this.systemResourceUsageRatioCache = this.systemResourceUsageRatio(),
                 properties.getInitialDelay(),
                 properties.getDelay(),
                 TimeUnit.SECONDS
         );
     }
 
-    public PhysicalResourceUsageRatio getPhysicalResourceUsageRatioCache() {
-        return physicalResourceUsageRatioCache;
+    public SystemResourceUsageRatio getSystemResourceUsageRatioCache() {
+        return systemResourceUsageRatioCache;
     }
 
-    public PhysicalResourceUsageRatio physicalResourceUsageRatio() {
+    public SystemResourceUsageRatio systemResourceUsageRatio() {
         java.lang.management.OperatingSystemMXBean operatingSystemMXBean = ManagementFactory.getOperatingSystemMXBean();
-        PhysicalResourceUsageRatio usageRatio = new PhysicalResourceUsageRatio();
+        SystemResourceUsageRatio usageRatio = new SystemResourceUsageRatio();
         if (operatingSystemMXBean instanceof com.sun.management.OperatingSystemMXBean) {
             com.sun.management.OperatingSystemMXBean sunOSMXBean =
                     (com.sun.management.OperatingSystemMXBean) operatingSystemMXBean;
