@@ -29,8 +29,8 @@
 
     <developers>
         <developer>
-            <name>lijunweiz</name>
-            <email>takealeaf@yeah.net</email>
+            <name>${build.user}</name>
+            <email>${user.mail}</email>
             <roles>
                 <role>Developer</role>
             </roles>
@@ -55,11 +55,14 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven-assembly-plugin.version>2.6</maven-assembly-plugin.version>
         <maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
+        <maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
         <maven-javadoc-plugin.version>2.10.4</maven-javadoc-plugin.version>
         <maven-gpg-plugin.version>3.1.0</maven-gpg-plugin.version>
         <maven-releaser-plugin.version>2.5.3</maven-releaser-plugin.version>
         <maven-deploy-plugin.version>3.1.1</maven-deploy-plugin.version>
+        <build.user>lijunweiz</build.user>
+        <user.mail>takealeaf@yeah.net</user.mail>
         <spring-boot.version>2.7.18</spring-boot.version>
         <spring-cloud.version>2021.0.9</spring-cloud.version>
         <guava.version>33.0.0-jre</guava.version>
@@ -68,27 +71,6 @@
     </properties>
 
     <profiles>
-        <profile>
-            <id>boot</id>
-            <activation>
-                <jdk>${jdk.version}</jdk>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-compiler-plugin</artifactId>
-                        <version>${maven-compiler-plugin.version}</version>
-                        <configuration>
-                            <source>${maven.compiler.source}</source>
-                            <target>${maven.compiler.target}</target>
-                            <encoding>${project.build.sourceEncoding}</encoding>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
         <profile>
             <id>agent</id>
             <activation>
@@ -135,40 +117,6 @@
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-source-plugin</artifactId>
-                        <version>${maven-source-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>jar-no-fork</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>${maven-javadoc-plugin.version}</version>
-                        <configuration>
-                            <show>private</show>
-                            <nohelp>true</nohelp>
-                            <charset>${project.build.sourceEncoding}</charset>
-                            <encoding>${project.build.sourceEncoding}</encoding>
-                            <docencoding>${project.build.sourceEncoding}</docencoding>
-                            <additionalparam>-Xdoclint:none</additionalparam>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
                         <version>${maven-gpg-plugin.version}</version>
                         <executions>
@@ -179,19 +127,6 @@
                                 </goals>
                             </execution>
                         </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-compiler-plugin</artifactId>
-                        <version>${maven-compiler-plugin.version}</version>
-                        <configuration>
-                            <source>${maven.compiler.source}</source>
-                            <target>${maven.compiler.target}</target>
-                            <encoding>${project.build.sourceEncoding}</encoding>
-                            <fork>true</fork>
-                            <verbose>true</verbose>
-                            <showWarnings>false</showWarnings>
-                        </configuration>
                     </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
@@ -291,6 +226,80 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${maven-source-plugin.version}</version>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Built-By>${build.user}</Built-By>
+                            <Implementation-Version>${project.version}</Implementation-Version>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven-javadoc-plugin.version}</version>
+                <configuration>
+                    <show>private</show>
+                    <nohelp>true</nohelp>
+                    <charset>${project.build.sourceEncoding}</charset>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <docencoding>${project.build.sourceEncoding}</docencoding>
+                    <additionalparam>-Xdoclint:none</additionalparam>
+                    <archive>
+                        <manifestEntries>
+                            <Built-By>${build.user}</Built-By>
+                            <Implementation-Version>${project.version}</Implementation-Version>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <fork>true</fork>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven-jar-plugin.version}</version>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Built-By>${build.user}</Built-By>
+                            <Implementation-Version>${project.version}</Implementation-Version>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 
 </project>
