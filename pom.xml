@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.lijunweiz</groupId>
     <artifactId>tracepulse</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <packaging>pom</packaging>
     <url>https://github.com/lijunweiz/tracepulse</url>
     <name>tracepulse</name>
