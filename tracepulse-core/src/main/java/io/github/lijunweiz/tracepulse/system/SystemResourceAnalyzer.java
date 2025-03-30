@@ -25,7 +25,7 @@ public class SystemResourceAnalyzer {
             properties = new SamplingProperties();
         }
         ScheduledExecutorService threadAnalyzer = Executors.newScheduledThreadPool(1,
-                new NamedThreadFactory("MemoryMonitor", true));
+                new NamedThreadFactory("SystemMonitor", true));
         threadAnalyzer.scheduleWithFixedDelay(
                 () -> this.systemResourceUsageRatioCache = this.systemResourceUsageRatio(),
                 properties.getInitialDelay(),
