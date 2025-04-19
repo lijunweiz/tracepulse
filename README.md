@@ -28,7 +28,6 @@
 ```groovy
 dependencies {
     implementation 'io.github.lijunweiz:tracepulse-boot:${tracepulse.version}'
-    implementation 'com.aliyun:alibaba-dingtalk-service-sdk:${alibaba-dingtalk-service-sdk.version}'
 }
 ```
 
