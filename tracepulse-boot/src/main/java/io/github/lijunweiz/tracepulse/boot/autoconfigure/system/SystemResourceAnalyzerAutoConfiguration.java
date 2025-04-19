@@ -12,7 +12,8 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(SystemResourceAnalyzerProperties.class)
-@ConditionalOnProperty(prefix = "tracepulse.monitor.system", name = "enabled", havingValue = "true", matchIfMissing = true)
+@ConditionalOnProperty(prefix = "tracepulse.monitor.system", name = "enabled", havingValue = "true",
+        matchIfMissing = true)
 public class SystemResourceAnalyzerAutoConfiguration {
 
     @Bean

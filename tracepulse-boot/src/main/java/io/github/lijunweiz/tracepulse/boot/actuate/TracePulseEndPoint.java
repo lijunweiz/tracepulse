@@ -27,13 +27,13 @@ public class TracePulseEndPoint {
     }
 
     @ReadOperation
-    public Object getCompositeData() {
+    public Object tracePulse() {
         return this.getAnalyzerData();
     }
 
     @ReadOperation
-    public Object getEntry(@Selector String key) {
-        return this.getAnalyzerData().get(key);
+    public Object tracePulseEntry(@Selector String toMatch) {
+        return this.getAnalyzerData().get(toMatch);
     }
 
     private Map<String, Object> getAnalyzerData() {

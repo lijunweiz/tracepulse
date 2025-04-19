@@ -15,22 +15,32 @@
 
 - maven使用
 ```xml
-<dependency>
-    <groupId>io.github.lijunweiz</groupId>
-    <artifactId>tracepulse-boot</artifactId>
-    <version>${tracepulse.version}</version>
-</dependency>
+<dependencies>
+    <dependency>
+      <groupId>io.github.lijunweiz</groupId>
+      <artifactId>tracepulse-boot</artifactId>
+      <version>${tracepulse.version}</version>
+    </dependency>
+</dependencies>
 ```
 
 - gradle使用
 ```groovy
 dependencies {
     implementation 'io.github.lijunweiz:tracepulse-boot:${tracepulse.version}'
+    implementation 'com.aliyun:alibaba-dingtalk-service-sdk:${alibaba-dingtalk-service-sdk.version}'
 }
 ```
 
-springboot配置文件须暴露端点tracepulse
-
+访问端点  
+springboot配置文件须暴露端点tracepulse   
+```yml
+management:
+  endpoints:
+    web:
+      exposure:
+        include: tracepulse
+```
 启动项目后访问：[http://ip:port/actuator/tracepulse]()
 
 

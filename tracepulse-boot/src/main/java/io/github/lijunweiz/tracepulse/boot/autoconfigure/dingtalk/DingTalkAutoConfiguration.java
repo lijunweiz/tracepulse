@@ -15,7 +15,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration(proxyBeanMethods = false)
 @ConditionalOnClass(DingTalkClient.class)
 @EnableConfigurationProperties(DingTalkProperties.class)
-@ConditionalOnProperty(prefix = "tracepulse.dingtalk", name = "enabled", havingValue = "true")
+@ConditionalOnProperty(prefix = "tracepulse.dingtalk", name = "enabled", havingValue = "true",
+        matchIfMissing = true)
 public class DingTalkAutoConfiguration {
 
     @Bean

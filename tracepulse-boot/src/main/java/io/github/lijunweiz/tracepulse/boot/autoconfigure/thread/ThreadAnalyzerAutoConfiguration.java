@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties(ThreadAnalyzerProperties.class)
 @ConditionalOnProperty(prefix = "tracepulse.monitor.thread", name = "enabled", havingValue = "true",
         matchIfMissing = true)
-public class ThreadAnalyzeAutoConfiguration {
+public class ThreadAnalyzerAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
