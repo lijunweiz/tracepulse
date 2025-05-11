@@ -59,6 +59,7 @@
         <guava.version>33.0.0-jre</guava.version>
         <fastjson2.version>2.0.32</fastjson2.version>
         <alibaba-dingtalk-service-sdk.version>2.0.0</alibaba-dingtalk-service-sdk.version>
+        <logback.version>1.3.14</logback.version>
     </properties>
 
     <profiles>

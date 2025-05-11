@@ -42,6 +42,22 @@ management:
 ```
 启动项目后访问：[http://ip:port/actuator/tracepulse]()
 
+- 集成钉钉  
+只需在配置文件中添加如下配置, 然后依赖注入DingTalkingMonitor即可使用相关API
+```yml
+tracepulse:
+  dingtalk:
+    enabled: true
+    default-robot: apm #默认启用的钉钉机器人
+    robot:
+      apm: #机器人名称
+        webhook: https://oapi.dingtalk.com/robot/send?access_token=xxxx
+        key-words: 告警 #钉钉集器人安全配置关键字
+      elk:
+        webhook: https://oapi.dingtalk.com/robot/send?access_token=xxxx
+        key-words: 告警
+```
+
 
 # 联系作者
 有任何问题或建议，欢迎随时联系作者
